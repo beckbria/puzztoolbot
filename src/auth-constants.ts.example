@@ -1,0 +1,3 @@
+# Discord Bot auth key
+const API_KEY="";
+export { API_KEY };
