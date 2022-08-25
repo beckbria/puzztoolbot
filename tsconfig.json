@@ -21,8 +21,10 @@
         "baseUrl": "./"
     },
     "files": [
+        "src/auth-constants.ts",
         "src/bot.ts",
-        "src/auth-constants.ts"
+        "src/listeners/interactionCreate.tsnCreate.ts",
+        "src/listeners/ready.ts"
     ],
     "include": [
         "./**/*.ts"

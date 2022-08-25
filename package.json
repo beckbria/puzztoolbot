@@ -4,6 +4,8 @@
   "description": "Discord bot for puzzle utilities",
   "private": true,
   "dependencies": {
+    "@discordjs/builders": "^1.2.0",
+    "@discordjs/rest": "^1.1.0",
     "puzzle-lib": "^1.5.0"
   },
   "main": "src/bot.js",
