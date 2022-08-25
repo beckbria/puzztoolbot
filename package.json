@@ -2,6 +2,10 @@
   "name": "puzztoolbot",
   "version": "0.0.1",
   "description": "Discord bot for puzzle utilities",
+  "private": true,
+  "dependencies": {
+    "puzzle-lib": "^1.5.0"
+  },
   "main": "src/bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
