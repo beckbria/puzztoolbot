@@ -1,4 +1,5 @@
-import { Client, ClientOptions } from 'discord.js';
+import { Client, Guild, Routes, RESTPostAPIApplicationCommandsJSONBody } from 'discord.js';
+import { REST } from "@discordjs/rest";
 import { DISCORD_BOT_API_TOKEN } from './auth-constants';
 import { ALL_COMMANDS } from './commands/index';
 
@@ -8,8 +9,24 @@ const client = new Client({
     intents: []
 });
 
+async function registerCommand (client: Client, guild: Guild, command: RESTPostAPIApplicationCommandsJSONBody[]) {
+    const rest = new REST({ version: "9" }).setToken(DISCORD_BOT_API_TOKEN);
+    const userID = client.user?.id || "No ID"
+    console.log(`${userID} -- ${guild.id}\n${command}`);
+    await rest.put(
+        Routes.applicationGuildCommands(userID, guild.id), { body: command });
+}
+
 client.once('ready', () => {
-	console.log('Ready!');
+    const delayedRegistration = setInterval(() => {
+        clearInterval(delayedRegistration);
+        let commands = ALL_COMMANDS.map(cmd => cmd.data.toJSON());
+        client.guilds.cache.forEach(guild => {
+            ALL_COMMANDS.forEach(cmd => {
+                registerCommand(client, guild, commands );
+            })
+        })
+    }, 1000);
 });
 
 // Load all slash commands
