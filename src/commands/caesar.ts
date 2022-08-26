@@ -12,7 +12,7 @@ const CaesarCommand = {
                 .setDescription('Ciphertext')
                 .setRequired(true)
             )
-        .addStringOption(option => 
+        .addIntegerOption(option => 
             option
                 .setName('shift')
                 .setDescription('Shift (optional)')

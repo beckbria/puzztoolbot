@@ -9,15 +9,23 @@ const client = new Client({
     intents: []
 });
 
-async function registerCommand (client: Client, guild: Guild, command: RESTPostAPIApplicationCommandsJSONBody[]) {
+async function registerCommand (client: Client, guild: Guild, commands: RESTPostAPIApplicationCommandsJSONBody[]) {
+    console.log("Start command registration");
     const rest = new REST({ version: "9" }).setToken(DISCORD_BOT_API_TOKEN);
     const userID = client.user?.id || "No ID"
-    console.log(`${userID} -- ${guild.id}\n${command}`);
-    await rest.put(
-        Routes.applicationGuildCommands(userID, guild.id), { body: command });
+    await rest.put(Routes.applicationGuildCommands(userID, guild.id), { body: [] })
+    .then(() => console.log('Successfully cleared commands'))
+    .catch(console.error)
+    .finally(() => {
+        rest.put(
+            Routes.applicationGuildCommands(userID, guild.id), { body: commands })
+        .then(() => console.log('Successfully deployed commands'))
+        .catch(console.error)
+    });
 }
 
 client.once('ready', () => {
+    console.log("Ready");
     const delayedRegistration = setInterval(() => {
         clearInterval(delayedRegistration);
         let commands = ALL_COMMANDS.map(cmd => cmd.data.toJSON());
@@ -51,6 +59,5 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
-client.login(DISCORD_BOT_API_TOKEN)
+client.login(DISCORD_BOT_API_TOKEN);
 
-console.log(client);
