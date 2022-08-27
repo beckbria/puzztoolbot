@@ -1,12 +1,14 @@
 {
   "name": "puzztoolbot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Discord bot for puzzle utilities",
   "private": true,
   "dependencies": {
     "@discordjs/builders": "^1.2.0",
     "@discordjs/rest": "^1.1.0",
-    "puzzle-lib": "^1.5.0"
+    "discord.js": "^14.3.0",
+    "puzzle-lib": "^1.5.0",
+    "ts-node": "^10.9.1"
   },
   "main": "src/bot.js",
   "scripts": {

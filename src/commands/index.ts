@@ -1,10 +1,19 @@
+import { AutoKeyCommand } from './autokey';
 import { CaesarCommand } from './caesar';
+import { MorseCommand } from './morse';
+import { VigenereCommand } from './vigenere';
 
 const ALL_COMMANDS = [
-    CaesarCommand
+    AutoKeyCommand,
+    CaesarCommand,
+    MorseCommand,
+    VigenereCommand
 ];
 
-export { 
+export {
     ALL_COMMANDS,
-    CaesarCommand 
+    AutoKeyCommand,
+    CaesarCommand,
+    MorseCommand,
+    VigenereCommand
 };
